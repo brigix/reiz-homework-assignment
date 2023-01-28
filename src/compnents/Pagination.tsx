@@ -4,14 +4,15 @@ import "../style/style.css";
 const Pagination = ({
 	recordsPerPage,
 	totalRecords,
+	currentPage,
 	paginate,
 }: {
 	recordsPerPage: number;
 	totalRecords: number | undefined;
+	currentPage: number | undefined;
 	paginate: (pageNumber: number) => void;
 }) => {
 	const pageNumbers: Array<number> = [];
-	console.log("page numberS:", pageNumbers);
 
 	if (!!totalRecords) {
 		for (let i = 1; i <= Math.ceil(totalRecords / recordsPerPage); i++) {
@@ -24,7 +25,9 @@ const Pagination = ({
 			<div className="flex row">
 				{pageNumbers.map((number) => (
 					<div
-						className="page-item"
+						className={`page ${
+							number == currentPage ? "selected" : "unselected"
+						}`}
 						key={number}
 						onClick={() => paginate(number)}
 					>

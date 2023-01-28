@@ -7,6 +7,7 @@ import {
 	DEFAULT_RECORDS_PER_PAGE,
 } from "../constants/constants";
 import Pagination from "./Pagination";
+import "../style/style.css";
 
 const CountriesContainer = () => {
 	const [countries, setCountries] = useState<Array<Country>>();
@@ -26,20 +27,24 @@ const CountriesContainer = () => {
 	const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
 	const currenRecords = countries?.slice(indexOfFirstRecord, indexOfLastRecord);
 
-    const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
-    
+	const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
 	return (
 		<div>
-			<ol>
+			
 				{currenRecords?.map((country: Country) => (
-					<li key={`${country.name}${country.region}${country.areaSize}`}>
+					<div
+						className="card"
+						key={`${country.name}${country.region}${country.areaSize}`}
+					>
 						{country.name}
-					</li>
+					</div>
 				))}
-			</ol>
+			
 			<Pagination
 				recordsPerPage={recordsPerPage}
-				totalRecords={countries?.length}
+                totalRecords={countries?.length}
+                currentPage={currentPage}
 				paginate={paginate}
 			/>
 		</div>
