@@ -6,6 +6,7 @@ import {
 	ALL_COUNTRIES,
 	DEFAULT_CURRENT_PAGE_NUMBER,
 	DEFAULT_RECORDS_PER_PAGE,
+	LITHUANIA,
 } from "../constants/constants";
 import Pagination from "./Pagination";
 import "../style/style.css";
@@ -88,19 +89,37 @@ const CountriesContainer = () => {
 		setFilteredCountries(sortedDesc);
 	};
 
+	const filterSmallerCountries = () => {
+		const Lithuania: Country | undefined = countries.find(
+			(country: Country) => country.name === LITHUANIA
+        );
+        console.log(Lithuania)
+		if (Lithuania !== undefined) {
+			const smallerCountries = filteredCountries.filter(
+				(country: Country) => country.area < Lithuania.area
+            );
+            console.log('SMALLER', smallerCountries)
+			setFilteredCountries(smallerCountries);
+			setCurrentPage(DEFAULT_CURRENT_PAGE_NUMBER);
+		}
+	};
+
 	return (
 		<div>
 			{!!error ? (
 				<h4>{error}</h4>
 			) : (
 				<>
+					<button onClick={filterSmallerCountries}>
+						Smaller than Lithuania
+					</button>
 					Sort: <button onClick={sortAsc}>ASC</button>
 					<button onClick={sortDesc}>DESC</button>
 					<RegionSelector countries={countries} selectRegion={selectRegion} />
 					{currentRecords?.map((country: Country) => (
 						<div
 							className="card"
-							key={`${country.name}${country.region}${country.areaSize}`}
+							key={`${country.name}${country.region}${country.area}`}
 						>
 							{country.name}
 						</div>
