@@ -1,12 +1,12 @@
 import React from "react";
 
 import "./App.css";
-import CountriesContainer from "./compnents/CountriesContainer";
+import Page from "./compnents/Page";
 
 function App() {
 	return (
 		<div className="App">
-			<CountriesContainer />
+			<Page />
 		</div>
 	);
 }

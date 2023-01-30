@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import "../style/style.css";
+import styles from "../style/style.module.css";
+import { PageNumber, Paginator } from "../styledComponents/components";
 
 const Pagination = ({
 	recordsPerPage,
@@ -21,21 +22,17 @@ const Pagination = ({
 	}
 
 	return (
-		<div className="center">
-			<div className="flex row">
-				{pageNumbers.map((number) => (
-					<div
-						className={`page ${
-							number == currentPage ? "selected" : "unselected"
-						}`}
-						key={number}
-						onClick={() => paginate(number)}
-					>
-						{number}
-					</div>
-				))}
-			</div>
-		</div>
+		<Paginator>
+			{pageNumbers.map((number) => (
+				<PageNumber
+					isSelected={number === currentPage}
+					key={number}
+					onClick={() => paginate(number)}
+				>
+					{number}
+				</PageNumber>
+			))}
+		</Paginator>
 	);
 };
 
