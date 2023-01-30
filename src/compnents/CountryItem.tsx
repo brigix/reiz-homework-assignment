@@ -3,6 +3,7 @@ import {
 	CountryCard,
 	CountryDetails,
 	CountryName,
+	Field,
 	StyledSpan,
 } from "../styledComponents/components";
 
@@ -10,13 +11,13 @@ const CountryItem = ({ country }: { country: Country }) => {
 	return (
 		<CountryCard>
 			<StyledSpan>
-				Country: <CountryName>{country.name}</CountryName>
+				<Field>Country:</Field>
+				<Field>Region:</Field>
+				<Field>Area size:</Field>
 			</StyledSpan>
 			<StyledSpan>
-				Region:<CountryDetails>{country.region}</CountryDetails>
-			</StyledSpan>
-			<StyledSpan>
-				Area size:
+				<CountryName>{country.name}</CountryName>
+				<CountryDetails>{country.region}</CountryDetails>
 				<CountryDetails>{country.area} km2</CountryDetails>
 			</StyledSpan>
 		</CountryCard>

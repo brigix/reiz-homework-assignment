@@ -23,6 +23,8 @@ import {
 	RightToggleButton,
 	StyledSort,
 	Header,
+	ArrowUp,
+	ArrowDown,
 } from "../styledComponents/components";
 import { ThemeProvider } from "styled-components";
 import { countryTheme } from "../styledComponents/country-theme";
@@ -115,7 +117,7 @@ const Page = () => {
 				(country: Country) => country.area < Lithuania.area
 			);
 			setFilteredCountries(smallerCountries);
-			setIsSmallerFiltered(true);			
+			setIsSmallerFiltered(true);
 		} else {
 			setFilteredCountries(countries);
 			setIsSmallerFiltered(false);
@@ -128,10 +130,10 @@ const Page = () => {
 			<StyledSort>
 				Sort by name:
 				<LeftToggleButton onClick={sortAsc} isSelected={toggleSort.asc}>
-					ASC
+					<ArrowUp />
 				</LeftToggleButton>
 				<RightToggleButton onClick={sortDesc} isSelected={toggleSort.desc}>
-					DESC
+					<ArrowDown />
 				</RightToggleButton>
 			</StyledSort>
 		);
@@ -145,7 +147,7 @@ const Page = () => {
 					onClick={filterSmallerCountries}
 					isSelected={isSmallerFiltered}
 				>
-					{isSmallerFiltered ? "All countries": "Smaller than Lithuania"}
+					 Smaller than Lithuania
 				</ToggleButton>
 			</>
 		);

@@ -39,43 +39,47 @@ export const RightSide = styled(NavBar)`
 
 export const CountryCard = styled.div`
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	color: ${(props) => props.theme.colors.text};
 	background-color: ${(props) => props.theme.colors.main};
 	margin-bottom: 0.4rem;
 	padding: 0.5rem 1rem;
 	border-radius: 0.2rem;
-    text-align: left;
+	text-align: left;
 `;
 
 export const Header = styled.h2`
 	text-size: 4rem;
 	color: ${(props) => props.theme.colors.light};
 	background-color: ${(props) => props.theme.colors.secondary};
-    padding: 0.5rem;
-    width: 100vw;
-    margin: 0; 
+	padding: 0.5rem;
+	width: 100vw;
+	margin: 0;
 `;
 
 export const StyledSpan = styled.span`
-    display: flex;
-    flex-direction: row;
+	display: flex;
+	flex-direction: column;
 	text-size: 1.5rem;
 	margin: 0;
 `;
+
+export const Field = styled.span`
+    margin-right:2rem;
+`
 
 export const CountryName = styled.h4`
 	text-alignment: left;
 	justify-items: flex-start;
 	text-size: 2rem;
 	margin: 0;
-    margin-left: auto;
+	//margin-left: auto;
 `;
 
 export const CountryDetails = styled.p`
 	text-size: 1.5rem;
 	margin: 0;
-	margin-left: auto;
+	//margin-left: auto;
 `;
 
 export const Button = styled.button`
@@ -122,7 +126,7 @@ export const ToggleButton = styled(Button)<ToggleProps>`
 
 export const LeftToggleButton = styled(ToggleButton)`
 	margin-left: 1rem;
-	border-radius: 1rem 0rem 0rem 0rem;
+	border-radius: 0rem 0rem 0rem 1rem;
 `;
 export const RightToggleButton = styled(ToggleButton)`
 	border-radius: 0rem 1rem 0rem 0rem;
@@ -133,8 +137,24 @@ export const StyledSort = styled.div`
 	font-size: 1em;
 	font-weight: 500;
 	padding-left: 1rem;
-	border-radius: 1rem 1rem 0rem 0rem;
+	border-radius: 0.2rem 1rem 0rem 0.2rem;
 	outline: 0.15rem solid ${(props) => props.theme.colors.secondary};
+`;
+
+export const Arrow = styled.i`
+	border: solid ${(props) => props.theme.colors.light};
+	border-width: 0 3px 3px 0;
+	display: inline-block;
+	padding: 3px;
+`;
+
+export const ArrowUp = styled(Arrow)`
+	transform: rotate(-135deg);
+	-webkit-transform: rotate(-135deg);
+`;
+export const ArrowDown = styled(Arrow)`
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(45deg);
 `;
 
 export const PageNumber = styled(ToggleButton)<ToggleProps>`
@@ -152,7 +172,7 @@ export const Paginator = styled.div`
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-    flex-wrap: wrap;
+	flex-wrap: wrap;
 `;
 
 export const SelectContainer = styled.div`
@@ -185,7 +205,7 @@ export const StyledSelect = styled.select`
 		width: 0.8em;
 		height: 0.5em;
 		background-color: ${(props) => props.theme.colors.secondary};
-		clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+		clip-path: polygon(100% 0%, 0 0%, 50% 100%); 
 		justify-self: end;
 	}
 `;
