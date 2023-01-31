@@ -29,9 +29,10 @@ import { ThemeProvider } from "styled-components";
 import { countryTheme } from "../styledComponents/country-theme";
 import SelectDropDown from "./SelectDropDown";
 import CountriesContainer from "./CountriesContainer";
-import { LDSSpinner } from "../styledComponents/LDSSpinner";
+import Spinner from "./Spinner";
 
 const Page = () => {
+	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const [error, setError] = useState<string | undefined>(undefined);
 	const [countries, setCountries] = useState<Array<Country>>([]);
 	const [selectedRegion, setSelectedRegion] = useState<string | undefined>();
@@ -53,6 +54,7 @@ const Page = () => {
 	const [Lithuania, setLithuania] = useState<Country | undefined>();
 
 	useEffect(() => {
+		setIsLoading(true);
 		fetchData()
 			.then((response: AxiosResponse) => {
 				if (response.data !== undefined) {
@@ -67,6 +69,9 @@ const Page = () => {
 			})
 			.catch((err: Error | AxiosError) => {
 				setError(err.message);
+			})
+			.finally(() => {
+				setIsLoading(false);
 			});
 	}, []);
 
@@ -194,8 +199,9 @@ const Page = () => {
 	return (
 		<ThemeProvider theme={countryTheme}>
 			<PageContainer>
-				{/* 	<LDSSpinner /> */}
-				{!!error ? (
+				{isLoading ? (
+					<Spinner />
+				) : !!error ? (
 					<Error />
 				) : (
 					<>

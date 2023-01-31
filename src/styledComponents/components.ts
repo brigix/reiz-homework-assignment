@@ -310,4 +310,3 @@ export const ErrorMessage = styled.div`
 	padding: 1rem 4rem;
 `;
 
-export const Spinner = styled.div``;
