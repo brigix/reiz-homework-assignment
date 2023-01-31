@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/reiz-homework-assignment/static/css/main.daf36095.css",
+    "main.js": "/reiz-homework-assignment/static/js/main.8994aed7.js",
+    "static/js/787.8b8ce0e7.chunk.js": "/reiz-homework-assignment/static/js/787.8b8ce0e7.chunk.js",
+    "index.html": "/reiz-homework-assignment/index.html",
+    "main.daf36095.css.map": "/reiz-homework-assignment/static/css/main.daf36095.css.map",
+    "main.8994aed7.js.map": "/reiz-homework-assignment/static/js/main.8994aed7.js.map",
+    "787.8b8ce0e7.chunk.js.map": "/reiz-homework-assignment/static/js/787.8b8ce0e7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.daf36095.css",
+    "static/js/main.8994aed7.js"
+  ]
+}
