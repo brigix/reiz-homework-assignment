@@ -14,9 +14,11 @@ interface Props {
 const SelectDropDown = ({
 	countries,
 	selectRegion,
+	selectedRegion,
 }: {
 	countries: Array<Country>;
 	selectRegion: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+	selectedRegion: string | undefined;
 }) => {
 	const regionsAll: Array<string | undefined> = countries.map(
 		(country) => country.region
@@ -31,18 +33,13 @@ const SelectDropDown = ({
 	});
 
 	return (
-
-			<StyledSelect onChange={selectRegion}>
-				<option value={ALL_COUNTRIES} disabled>
-					Select Region
+		<StyledSelect onChange={selectRegion} value={selectedRegion}>
+			{options.map(({ value, label }) => (
+				<option key={value} value={value}>
+					{label}
 				</option>
-				{options.map(({ value, label }) => (
-					<option key={value} value={value}>
-						{label}
-					</option>
-				))}
-			</StyledSelect>
-	
+			))}
+		</StyledSelect>
 	);
 };
 

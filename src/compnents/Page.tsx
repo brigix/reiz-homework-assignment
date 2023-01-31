@@ -25,6 +25,7 @@ import {
 	Header,
 	ArrowUp,
 	ArrowDown,
+	SingleToggleButton,
 } from "../styledComponents/components";
 import { ThemeProvider } from "styled-components";
 import { countryTheme } from "../styledComponents/country-theme";
@@ -139,16 +140,24 @@ const Page = () => {
 		);
 	};
 
+	useEffect(() => {
+		console.log("REGIO9N", selectedRegion);
+	}, [selectedRegion]);
+
 	const FilterMenu = () => {
 		return (
 			<>
-				<SelectDropDown countries={countries} selectRegion={selectRegion} />
-				<ToggleButton
+				<SelectDropDown
+					countries={countries}
+					selectRegion={selectRegion}
+					selectedRegion={selectedRegion}
+				/>
+				<SingleToggleButton
 					onClick={filterSmallerCountries}
 					isSelected={isSmallerFiltered}
 				>
-					 Smaller than Lithuania
-				</ToggleButton>
+					Smaller than Lithuania
+				</SingleToggleButton>
 			</>
 		);
 	};

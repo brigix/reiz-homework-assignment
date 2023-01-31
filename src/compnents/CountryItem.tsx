@@ -18,7 +18,7 @@ const CountryItem = ({ country }: { country: Country }) => {
 			<StyledSpan>
 				<CountryName>{country.name}</CountryName>
 				<CountryDetails>{country.region}</CountryDetails>
-				<CountryDetails>{country.area} km2</CountryDetails>
+				<CountryDetails>{country.area} km<sup>2</sup></CountryDetails>
 			</StyledSpan>
 		</CountryCard>
 	);

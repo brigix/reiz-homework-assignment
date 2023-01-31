@@ -65,8 +65,8 @@ export const StyledSpan = styled.span`
 `;
 
 export const Field = styled.span`
-    margin-right:2rem;
-`
+	margin-right: 2rem;
+`;
 
 export const CountryName = styled.h4`
 	text-alignment: left;
@@ -90,7 +90,7 @@ export const Button = styled.button`
 	padding: 0.25em 1em;
 	border-radius: 0.2rem;
     border: 0.15rem solid ${(props) => props.theme.colors.secondary};
-
+    transition: 0.5s;
     &:hover {
 		background-color: ${(props) => props.theme.colors.light};
         border: 0.15rem solid ${(props) => props.theme.colors.secondary};
@@ -125,11 +125,49 @@ export const ToggleButton = styled(Button)<ToggleProps>`
 `;
 
 export const LeftToggleButton = styled(ToggleButton)`
+	border: none;
 	margin-left: 1rem;
 	border-radius: 0rem 0rem 0rem 1rem;
+	border-left: 0.2rem solid;
+	border-color: ${(props) => props.theme.colors.light};
+	&: hover {
+		border: none;
+		border-left: 0.2rem solid;
+		border-color: ${(props) =>
+			props.isSelected
+				? props.theme.colors.light
+				: props.theme.colors.secondary};
+	}
 `;
+
 export const RightToggleButton = styled(ToggleButton)`
 	border-radius: 0rem 1rem 0rem 0rem;
+	border: none;
+	border-color: ${(props) => props.theme.colors.light};
+	&: hover {
+		border: none;
+		border-color: ${(props) =>
+			props.isSelected
+				? props.theme.colors.light
+				: props.theme.colors.secondary};
+	}
+`;
+
+export const SingleToggleButton = styled(ToggleButton)<ToggleProps>`
+	border: 0.15rem solid;
+	border-color: ${(props) =>
+		props.isSelected
+			? props.theme.colors.selected
+			: props.theme.colors.secondary};
+	&: hover {
+		border: 0.15rem solid;
+		border-color: ${(props) =>
+			props.isSelected
+				? props.theme.colors.selected
+				: props.theme.colors.secondary};
+		background-color: ${(props) => props.theme.colors.light};
+		color: ${(props) => props.theme.colors.text};
+	}
 `;
 
 export const StyledSort = styled.div`
@@ -142,7 +180,8 @@ export const StyledSort = styled.div`
 `;
 
 export const Arrow = styled.i`
-	border: solid ${(props) => props.theme.colors.light};
+	border: solid ;
+    border-color: inherit;
 	border-width: 0 3px 3px 0;
 	display: inline-block;
 	padding: 3px;
@@ -188,10 +227,9 @@ export const StyledSelect = styled.select`
 	padding: 0.25em 1em;
 	border-radius: 0.2rem;
 	border: 0.15rem solid ${(props) => props.theme.colors.secondary};
-	appearance: none;
 
 	&:hover {
-		border: 0.15rem solid ${(props) => props.theme.colors.secondary};
+		border: 0.15rem solid ${(props) => props.theme.colors.selected};
 		cursor: pointer;
 	}
 
@@ -205,7 +243,7 @@ export const StyledSelect = styled.select`
 		width: 0.8em;
 		height: 0.5em;
 		background-color: ${(props) => props.theme.colors.secondary};
-		clip-path: polygon(100% 0%, 0 0%, 50% 100%); 
+		clip-path: polygon(100% 0%, 0 0%, 50% 100%);
 		justify-self: end;
 	}
 `;
