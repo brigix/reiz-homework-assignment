@@ -28,13 +28,23 @@ export const NavBar = styled(Container)`
 	align-items: center;
 	margin: 0rem;
 	width: 95vw;
+    @media only screen and (max-width: 800px) {
+        flex-direction: column;
+    }
 `;
 export const LeftSide = styled(NavBar)`
 	margin-right: auto;
+	@media only screen and (max-width: 800px) {
+		width: 100%;
+	}
 `;
 export const RightSide = styled(NavBar)`
 	margin-left: auto;
 	justify-content: right;
+    @media only screen and (max-width: 800px) {
+        flex-direction: column;
+        width: 100%;
+    }
 `;
 
 export const CountryCard = styled.div`
@@ -139,6 +149,9 @@ export const LeftToggleButton = styled(ToggleButton)`
 				: props.theme.colors.secondary};
 		cursor: ${(props) => (props.isSelected ? "not-allowed" : "pointer")};
 	}
+	@media only screen and (max-width: 800px) {
+		margin-left: auto;
+	}
 `;
 
 export const RightToggleButton = styled(ToggleButton)`
@@ -152,6 +165,9 @@ export const RightToggleButton = styled(ToggleButton)`
 				? props.theme.colors.light
 				: props.theme.colors.secondary};
 		cursor: ${(props) => (props.isSelected ? "not-allowed" : "pointer")};
+	}
+	@media only screen and (max-width: 800px) {
+		//margin-left: auto;
 	}
 `;
 
@@ -170,6 +186,10 @@ export const SingleToggleButton = styled(ToggleButton)<ToggleProps>`
 		background-color: ${(props) => props.theme.colors.light};
 		color: ${(props) => props.theme.colors.text};
 	}
+	@media only screen and (max-width: 800px) {
+		margin-bottom: 1rem;
+		width: 100%;
+	}
 `;
 
 export const StyledSort = styled.div`
@@ -180,6 +200,13 @@ export const StyledSort = styled.div`
 	padding-left: 1rem;
 	border-radius: 0.2rem 1rem 0rem 0.2rem;
 	outline: 0.15rem solid ${(props) => props.theme.colors.secondary};
+	@media only screen and (max-width: 800px) {
+    display: flex;
+       width: 95%;
+       margin-top: 1rem;
+       text-alignment: left;
+
+	}
 `;
 
 export const Arrow = styled.i`
@@ -249,6 +276,10 @@ export const StyledSelect = styled.select`
 		background-color: ${(props) => props.theme.colors.secondary};
 		clip-path: polygon(100% 0%, 0 0%, 50% 100%);
 		justify-self: end;
+	}
+
+	@media only screen and (max-width: 800px) {
+		width: 100%;
 	}
 `;
 
