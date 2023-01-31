@@ -1,5 +1,3 @@
-import React, { useEffect } from "react";
-import styles from "../style/style.module.css";
 import { PageNumber, Paginator } from "../styledComponents/components";
 
 const Pagination = ({

@@ -137,6 +137,7 @@ export const LeftToggleButton = styled(ToggleButton)`
 			props.isSelected
 				? props.theme.colors.light
 				: props.theme.colors.secondary};
+		cursor: ${(props) => (props.isSelected ? "not-allowed" : "pointer")};
 	}
 `;
 
@@ -150,6 +151,7 @@ export const RightToggleButton = styled(ToggleButton)`
 			props.isSelected
 				? props.theme.colors.light
 				: props.theme.colors.secondary};
+		cursor: ${(props) => (props.isSelected ? "not-allowed" : "pointer")};
 	}
 `;
 
@@ -172,7 +174,8 @@ export const SingleToggleButton = styled(ToggleButton)<ToggleProps>`
 
 export const StyledSort = styled.div`
 	background-color: ${(props) => props.theme.colors.light};
-	font-size: 1em;
+	color: ${(props) => props.theme.colors.text};
+	font-size: 1rem;
 	font-weight: 500;
 	padding-left: 1rem;
 	border-radius: 0.2rem 1rem 0rem 0.2rem;
@@ -180,8 +183,8 @@ export const StyledSort = styled.div`
 `;
 
 export const Arrow = styled.i`
-	border: solid ;
-    border-color: inherit;
+	border: solid;
+	border-color: inherit;
 	border-width: 0 3px 3px 0;
 	display: inline-block;
 	padding: 3px;
@@ -221,7 +224,8 @@ export const SelectContainer = styled.div`
 
 export const StyledSelect = styled.select`
 	background-color: ${(props) => props.theme.colors.light};
-	font-size: 1em;
+	color: ${(props) => props.theme.colors.text};
+	font-size: 1rem;
 	font-weight: 500;
 	margin: 1em;
 	padding: 0.25em 1em;

@@ -11,12 +11,10 @@ import {
 import Pagination from "./Pagination";
 import { SortAsc, SortDesc } from "../helpers/utils";
 import {
-	Button,
 	PageContainer,
 	ErrorMessage,
 	NavBar,
 	RightSide,
-	ToggleButton,
 	ErrorContainer,
 	LeftSide,
 	LeftToggleButton,
@@ -52,6 +50,7 @@ const Page = () => {
 		{ asc: false, desc: false }
 	);
 	const [isSmallerFiltered, setIsSmallerFiltered] = useState<boolean>(false);
+	const [Lithuania, setLithuania] = useState<Country | undefined>();
 
 	useEffect(() => {
 		fetchData()
@@ -59,6 +58,10 @@ const Page = () => {
 				if (response.data !== undefined) {
 					setCountries(response.data);
 					setFilteredCountries(response.data);
+					const Lithuania: Country | undefined = response.data.find(
+						(country: Country) => country.name === LITHUANIA
+					);
+					setLithuania(Lithuania);
 					setError(undefined);
 				}
 			})
@@ -67,18 +70,7 @@ const Page = () => {
 			});
 	}, []);
 
-	useEffect(() => {
-		if (selectedRegion === ALL_COUNTRIES) {
-			setFilteredCountries(countries);
-		} else {
-			const countriesInRegion = countries.filter(
-				(country) => country.region === selectedRegion
-			);
-			setFilteredCountries(countriesInRegion);
-		}
-		setCurrentPage(DEFAULT_CURRENT_PAGE_NUMBER);
-	}, [selectedRegion]);
-
+	// PAGINATOR
 	useEffect(() => {
 		const lastIndex = currentPage * recordsPerPage;
 		setIndexOfLastRecord(currentPage * recordsPerPage);
@@ -93,9 +85,53 @@ const Page = () => {
 
 	const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
+	// FILTERING LOGIC
+
+	useEffect(() => {
+		let countriesByRegion: Array<Country> = [];
+		if (selectedRegion === ALL_COUNTRIES) {
+			countriesByRegion = countries;
+			setFilteredCountries(countries);
+		} else {
+			countriesByRegion = countries.filter(
+				(country) => country.region === selectedRegion
+			);
+		}
+		if (isSmallerFiltered && Lithuania !== undefined) {
+			countriesByRegion = countriesByRegion.filter(
+				(country: Country) => country.area < Lithuania.area
+			);
+		}
+		setFilteredCountries(countriesByRegion);
+		setCurrentPage(DEFAULT_CURRENT_PAGE_NUMBER);
+	}, [selectedRegion]);
+
 	const selectRegion = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		setSelectedRegion(event.target.value);
 	};
+
+	const filterSmallerCountries = () => {
+		if (isSmallerFiltered) {
+			if (selectedRegion !== ALL_COUNTRIES && selectedRegion !== undefined) {
+				const countriesByRegion = countries.filter(
+					(country) => country.region === selectedRegion
+				);
+				setFilteredCountries(countriesByRegion);
+			} else {
+				setFilteredCountries(countries);
+			}
+			setIsSmallerFiltered(false);
+		} else if (Lithuania !== undefined) {
+			const smallerCountries = filteredCountries.filter(
+				(country: Country) => country.area < Lithuania.area
+			);
+			setFilteredCountries(smallerCountries);
+			setIsSmallerFiltered(true);
+		}
+		setCurrentPage(DEFAULT_CURRENT_PAGE_NUMBER);
+	};
+
+	// SORTING
 
 	const sortAsc = () => {
 		const sortedASC = [...filteredCountries.sort(SortAsc)];
@@ -108,23 +144,7 @@ const Page = () => {
 		setToggleSort({ asc: false, desc: true });
 	};
 
-	const filterSmallerCountries = () => {
-		const Lithuania: Country | undefined = countries.find(
-			(country: Country) => country.name === LITHUANIA
-		);
-		console.log(Lithuania);
-		if (Lithuania !== undefined && !isSmallerFiltered) {
-			const smallerCountries = filteredCountries.filter(
-				(country: Country) => country.area < Lithuania.area
-			);
-			setFilteredCountries(smallerCountries);
-			setIsSmallerFiltered(true);
-		} else {
-			setFilteredCountries(countries);
-			setIsSmallerFiltered(false);
-		}
-		setCurrentPage(DEFAULT_CURRENT_PAGE_NUMBER);
-	};
+	// COMPONENTS
 
 	const SortingMenu = () => {
 		return (
@@ -139,10 +159,6 @@ const Page = () => {
 			</StyledSort>
 		);
 	};
-
-	useEffect(() => {
-		console.log("REGIO9N", selectedRegion);
-	}, [selectedRegion]);
 
 	const FilterMenu = () => {
 		return (

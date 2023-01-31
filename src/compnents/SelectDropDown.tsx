@@ -2,8 +2,6 @@ import { onlyUnique } from "../helpers/utils";
 import { ALL_COUNTRIES } from "../constants/constants";
 import { Country } from "../models/models";
 import {
-	Label,
-	SelectContainer,
 	StyledSelect,
 } from "../styledComponents/components";
 

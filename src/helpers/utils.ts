@@ -20,7 +20,6 @@ export const SortAsc = (x: Country, y: Country) => {
 	return 0;
 };
 
-
 export const SortDesc = (x: Country, y: Country) => {
     if (x.name !== undefined && y.name !== undefined) {
 		if (x.name > y.name) {
