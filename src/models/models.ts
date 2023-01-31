@@ -3,5 +3,3 @@ export type Country = {
 	region: string | undefined;
 	area: number ;
 }
-
-export type SORTING = "ASC" | "DESC" | "UNSORTED"

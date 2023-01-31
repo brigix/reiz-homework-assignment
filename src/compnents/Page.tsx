@@ -9,7 +9,7 @@ import {
 	LITHUANIA,
 } from "../constants/constants";
 import Pagination from "./Pagination";
-import { SortAsc, SortDesc } from "../helpers/utils";
+import { SortAsc, sortCountries, SortDesc } from "../helpers/utils";
 import {
 	PageContainer,
 	ErrorMessage,
@@ -102,6 +102,7 @@ const Page = () => {
 				(country: Country) => country.area < Lithuania.area
 			);
 		}
+		countriesByRegion = sortCountries(countriesByRegion, toggleSort);
 		setFilteredCountries(countriesByRegion);
 		setCurrentPage(DEFAULT_CURRENT_PAGE_NUMBER);
 	}, [selectedRegion]);
@@ -111,23 +112,25 @@ const Page = () => {
 	};
 
 	const filterSmallerCountries = () => {
+		let countriesList: Array<Country> = [];
 		if (isSmallerFiltered) {
 			if (selectedRegion !== ALL_COUNTRIES && selectedRegion !== undefined) {
-				const countriesByRegion = countries.filter(
+				countriesList = countries.filter(
 					(country) => country.region === selectedRegion
 				);
-				setFilteredCountries(countriesByRegion);
 			} else {
-				setFilteredCountries(countries);
+				countriesList = countries;
 			}
 			setIsSmallerFiltered(false);
 		} else if (Lithuania !== undefined) {
-			const smallerCountries = filteredCountries.filter(
+			countriesList = filteredCountries.filter(
 				(country: Country) => country.area < Lithuania.area
 			);
-			setFilteredCountries(smallerCountries);
+
 			setIsSmallerFiltered(true);
 		}
+		countriesList = sortCountries(countriesList, toggleSort);
+		setFilteredCountries(countriesList);
 		setCurrentPage(DEFAULT_CURRENT_PAGE_NUMBER);
 	};
 
